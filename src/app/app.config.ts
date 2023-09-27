@@ -1,10 +1,10 @@
-import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } from '@angular/core';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { appRoutes } from './app.routes';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthorizationInterceptor } from './core/interceptors/authorization.interceptor';
 import { AppConfig, initAppConfig } from './core/app.config';
 
@@ -22,5 +22,8 @@ export const appConfig: ApplicationConfig = {
     deps: [AppConfig],
     multi: true
   },
+  importProvidersFrom(
+    HttpClientModule
+  )
   ],
 };
